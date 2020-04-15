@@ -1,5 +1,7 @@
 import numpy as np
 
+# Add sudoku here , put zeros in the unknown spots 
+
 grid  = [[5,3,0,0,7,0,0,0,0],
          [6,0,0,1,9,5,0,0,0],
          [0,9,8,0,0,0,0,6,0],
@@ -13,15 +15,20 @@ grid  = [[5,3,0,0,7,0,0,0,0],
 print ("Input Grid")
 print (np.matrix(grid))
 
+# Finds the possibility of number "n" fitting in spot ["y","x"] 
+
 def possibility(y,x,n):
     global grid
+    # Check for same number in row
     for i in range (0,9):   
         if grid[y][i] == n:
             return False 
+    # Check for same number in coloumn
     for i in range (0,9):   
         if grid[i][x] == n:
             return False 
-    x0 = (x//3)*3
+    # Check for same number in box
+    x0 = (x//3)*3 # This floor divion round-offs division to the nearest interger 
     y0 = (y//3)*3
     for i in range(0,3):
         for j in range(0,3):
